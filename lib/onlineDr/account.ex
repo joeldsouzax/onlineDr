@@ -7,6 +7,7 @@ defmodule OnlineDr.Account do
   alias OnlineDr.Repo
 
   alias OnlineDr.Account.Practitioner
+  alias OnlineDr.Account.Kind
 
   @doc """
   Returns the list of practitioners.
@@ -100,5 +101,12 @@ defmodule OnlineDr.Account do
   """
   def change_practitioner(%Practitioner{} = practitioner, attrs \\ %{}) do
     Practitioner.changeset(practitioner, attrs)
+  end
+
+
+  ## account kind section
+
+  def create_kind!(name) do
+    Repo.insert!(%Kind{name: name}, on_conflic: :nothing)
   end
 end

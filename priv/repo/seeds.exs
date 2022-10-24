@@ -12,7 +12,13 @@
 
 
 alias OnlineDr.Center
+alias OnlineDr.Account
 
 for type <- ~w(General-Practitioner Mental-Health Primary-Care Addication-Services Community-Health Retail-Clinic) do
   Center.create_type!(type)
+end
+
+
+for kind <- ~w(Neurologists Radiologists Pediatricians Anesthesiologists Internists Obstetricians-Gynecologists) do
+  Account.create_kind!(kind)
 end
