@@ -6,9 +6,10 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :onlineDr, OnlineDr.Repo,
-  username: System.get_env("DATABASE_USER"),
-  password: System.get_env("DATABASE_PASSWORD"),
-  hostname: System.get_env("DATABASE_HOST"),
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
+  hostname: System.get_env("PGHOST", "localhost"),
+  port: String.to_integer(System.get_env("PGPORT", "5432")),
   database: "onlinedr_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
