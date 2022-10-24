@@ -11,6 +11,7 @@ defmodule OnlineDrWeb.ClinicController do
     render(conn, "index.html", clinics: clinics)
   end
 
+  @spec new(Plug.Conn.t(), any) :: Plug.Conn.t()
   def new(conn, _params) do
     changeset = Center.change_clinic(%Clinic{})
     render(conn, "new.html", changeset: changeset)
