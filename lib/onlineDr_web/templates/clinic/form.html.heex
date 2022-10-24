@@ -17,6 +17,8 @@
   <%= text_input f, :phone_number %>
   <%= error_tag f, :phone_number %>
 
+  <%= label f, :type_id, "Types" %>
+  <%= select f, :type_id, type_select_options(@types), prompt: "Choose a type" %>
   <div>
     <%= submit "Save" %>
   </div>

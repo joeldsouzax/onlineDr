@@ -107,4 +107,10 @@ defmodule OnlineDr.Center do
   def create_type!(name) do
     Repo.insert!(%Type{name: name}, on_conflict: :nothing)
   end
+
+  def list_alphabetical_types do
+    Type
+    |> Type.alphabetical()
+    |> Repo.all
+  end
 end

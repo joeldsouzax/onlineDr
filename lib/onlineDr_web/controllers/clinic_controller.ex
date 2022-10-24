@@ -1,6 +1,8 @@
 defmodule OnlineDrWeb.ClinicController do
   use OnlineDrWeb, :controller
 
+  plug :load_types when action in [:new, :create, :edit, :update]
+
   alias OnlineDr.Center
   alias OnlineDr.Center.Clinic
 
@@ -14,6 +16,7 @@ defmodule OnlineDrWeb.ClinicController do
     render(conn, "new.html", changeset: changeset)
   end
 
+  @spec create(Plug.Conn.t(), map) :: Plug.Conn.t()
   def create(conn, %{"clinic" => clinic_params}) do
     case Center.create_clinic(clinic_params) do
       {:ok, clinic} ->
@@ -58,5 +61,9 @@ defmodule OnlineDrWeb.ClinicController do
     conn
     |> put_flash(:info, "Clinic deleted successfully.")
     |> redirect(to: Routes.clinic_path(conn, :index))
+  end
+
+  defp load_types(conn, _) do
+    assign(conn, :types, Center.list_alphabetical_types())
   end
 end
