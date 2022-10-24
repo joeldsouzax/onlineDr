@@ -109,4 +109,10 @@ defmodule OnlineDr.Account do
   def create_kind!(name) do
     Repo.insert!(%Kind{name: name}, on_conflic: :nothing)
   end
+
+  def list_alphabetical_kinds do
+    Kind
+    |> Kind.alphabetical()
+    |> Repo.all
+  end
 end
