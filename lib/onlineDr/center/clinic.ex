@@ -17,5 +17,6 @@ defmodule OnlineDr.Center.Clinic do
     |> validate_required([:name, :address, :phone_number])
     |> validate_length(:phone_number, min: 5)
     |> validate_format(:phone_number, ~r/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)
+    |> assoc_constraint(:type)
   end
 end
