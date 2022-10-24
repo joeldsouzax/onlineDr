@@ -23,7 +23,5 @@ if [[ -z `psql -Atqc "\\list $PGDATABASE"` ]]; then
     echo "$PGDATABASE created..."
 fi
 
-mix ecto.migrate
-
 echo "\n Launching Phoenix web server"
 mix phx.server
