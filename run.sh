@@ -17,10 +17,13 @@ echo "\nPostgres is available: continuing with database setup"
 if [[ -z `psql -Atqc "\\list $PGDATABASE"` ]]; then
     echo "Database $PGDATABASE does not exist. Creating..."
     createdb -E UTF8 $PGDATABASE -l en_US.UTF-8 -T template0
-    mix ecto.create
-    mix ecto.migrate
-    mix run priv/repo/seeds.exs
+   
     echo "$PGDATABASE created..."
 fi
+
+mix ecto.create
+mix ecto.migrate
+mix run priv/repo/seeds.exs
+
 echo "\n Launching Phoenix web server"
 mix phx.server
