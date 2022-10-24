@@ -34,3 +34,8 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
       - Patients - not needed
 
 ==============================
+
+
+# TODO
+  - show type in /show clinics
+  - show kind in /show practitioners
