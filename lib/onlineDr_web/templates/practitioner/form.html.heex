@@ -17,6 +17,9 @@
   <%= textarea f, :description %>
   <%= error_tag f, :description %>
 
+  <%= label f, :kind_id, "Practitioner Kind" %>
+  <%= select f, :kind_id, kind_select_options(@kinds), prompt: "Choose a Kind" %>
+
   <div>
     <%= submit "Save" %>
   </div>
