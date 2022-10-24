@@ -1,0 +1,23 @@
+<h1>Show Practitioner</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @practitioner.name %>
+  </li>
+
+  <li>
+    <strong>Phone number:</strong>
+    <%= @practitioner.phone_number %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @practitioner.description %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.practitioner_path(@conn, :edit, @practitioner) %></span> |
+<span><%= link "Back", to: Routes.practitioner_path(@conn, :index) %></span>

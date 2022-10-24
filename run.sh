@@ -22,6 +22,5 @@ if [[ -z `psql -Atqc "\\list $PGDATABASE"` ]]; then
     ## seeding done here
     echo "$PGDATABASE created..."
 fi
-
 echo "\n Launching Phoenix web server"
 mix phx.server

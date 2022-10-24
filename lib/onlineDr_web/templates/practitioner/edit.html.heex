@@ -1,0 +1,5 @@
+<h1>Edit Practitioner</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.practitioner_path(@conn, :update, @practitioner)) %>
+
+<span><%= link "Back", to: Routes.practitioner_path(@conn, :index) %></span>

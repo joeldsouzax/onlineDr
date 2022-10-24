@@ -1,0 +1,30 @@
+<h1>Listing Practitioners</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone number</th>
+      <th>Description</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for practitioner <- @practitioners do %>
+    <tr>
+      <td><%= practitioner.name %></td>
+      <td><%= practitioner.phone_number %></td>
+      <td><%= practitioner.description %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.practitioner_path(@conn, :show, practitioner) %></span>
+        <span><%= link "Edit", to: Routes.practitioner_path(@conn, :edit, practitioner) %></span>
+        <span><%= link "Delete", to: Routes.practitioner_path(@conn, :delete, practitioner), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Practitioner", to: Routes.practitioner_path(@conn, :new) %></span>

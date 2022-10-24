@@ -17,6 +17,7 @@ defmodule OnlineDrWeb.Router do
   scope "/", OnlineDrWeb do
     pipe_through :browser
     resources "/clinics", ClinicController
+    resources "/practitioners", PractitionerController
     get "/", PageController, :index
   end
 
