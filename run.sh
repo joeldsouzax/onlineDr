@@ -19,7 +19,7 @@ if [[ -z `psql -Atqc "\\list $PGDATABASE"` ]]; then
     createdb -E UTF8 $PGDATABASE -l en_US.UTF-8 -T template0
     mix ecto.create
     mix ecto.migrate
-    ## seeding done here
+    mix run priv/repo/seeds.exs
     echo "$PGDATABASE created..."
 fi
 echo "\n Launching Phoenix web server"
