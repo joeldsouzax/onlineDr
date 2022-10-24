@@ -5,8 +5,8 @@ defmodule OnlineDr.Center do
 
   import Ecto.Query, warn: false
   alias OnlineDr.Repo
-
   alias OnlineDr.Center.Clinic
+  alias OnlineDr.Center.Type
 
   @doc """
   Returns the list of clinics.
@@ -100,5 +100,11 @@ defmodule OnlineDr.Center do
   """
   def change_clinic(%Clinic{} = clinic, attrs \\ %{}) do
     Clinic.changeset(clinic, attrs)
+  end
+
+
+  ## clinic type section
+  def create_type!(name) do
+    Repo.insert!(%Type{name: name}, on_conflict: :nothing)
   end
 end

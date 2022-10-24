@@ -11,6 +11,7 @@ defmodule OnlineDr.Account.Practitioner do
     timestamps()
   end
 
+  ## TODO: generalize the validation regexes
   @doc false
   def changeset(practitioner, attrs) do
     practitioner
