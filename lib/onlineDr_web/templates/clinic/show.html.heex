@@ -1,0 +1,23 @@
+<h1>Show Clinic</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @clinic.name %>
+  </li>
+
+  <li>
+    <strong>Address:</strong>
+    <%= @clinic.address %>
+  </li>
+
+  <li>
+    <strong>Phone number:</strong>
+    <%= @clinic.phone_number %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.clinic_path(@conn, :edit, @clinic) %></span> |
+<span><%= link "Back", to: Routes.clinic_path(@conn, :index) %></span>

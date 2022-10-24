@@ -26,11 +26,11 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   
   - domains
     - Centers:
-      - Hospitals
+      - Hospitals - not needed
       - Clinics
 
     - Accounts
       - Practitioners - belongs to Clinics
-      - Patients
+      - Patients - not needed
 
 ==============================
