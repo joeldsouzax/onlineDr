@@ -1,5 +1,6 @@
 defmodule OnlineDrWeb.PractitionerController do
   use OnlineDrWeb, :controller
+  plug :load_kinds when action in [:new, :create, :edit, :update]
 
   alias OnlineDr.Account
   alias OnlineDr.Account.Practitioner
@@ -58,5 +59,9 @@ defmodule OnlineDrWeb.PractitionerController do
     conn
     |> put_flash(:info, "Practitioner deleted successfully.")
     |> redirect(to: Routes.practitioner_path(conn, :index))
+  end
+
+  defp load_kinds(conn, _) do
+    assign(conn, :kinds, Account.list_alphabetical_kinds())
   end
 end
