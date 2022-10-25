@@ -102,6 +102,12 @@ defmodule OnlineDr.Center do
     Clinic.changeset(clinic, attrs)
   end
 
+  def get_clinics(nil), do: []
+  def get_clinics(ids) do
+    Repo.all(from c in Clinic, where: c.id in ^ids)
+  end
+
+
 
   ## clinic type section
   def create_type!(name) do

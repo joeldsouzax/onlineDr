@@ -20,6 +20,15 @@
   <%= label f, :kind_id, "Practitioner Kind" %>
   <%= select f, :kind_id, kind_select_options(@kinds), prompt: "Choose a Kind" %>
 
+  <%= label f, :clinics, "Clinic Name" %>
+   <%=
+    multiselect_checkboxes(
+      f,
+      :clinics,
+      Enum.map(@clinics, fn c -> { c.name, c.id } end),
+      selected: Enum.map(@changeset.data.clinics,&(&1.id))
+    )
+  %>
   <div>
     <%= submit "Save" %>
   </div>

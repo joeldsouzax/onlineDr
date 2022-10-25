@@ -20,6 +20,7 @@ defmodule OnlineDr.Account do
   """
   def list_practitioners do
     Repo.all(Practitioner)
+    |> Repo.preload(:clinics)
   end
 
   @doc """
@@ -36,7 +37,7 @@ defmodule OnlineDr.Account do
       ** (Ecto.NoResultsError)
 
   """
-  def get_practitioner!(id), do: Repo.get!(Practitioner, id)
+  def get_practitioner!(id), do: Repo.get!(Practitioner, id) |> Repo.preload(:clinics)
 
   @doc """
   Creates a practitioner.
@@ -53,6 +54,7 @@ defmodule OnlineDr.Account do
   def create_practitioner(attrs \\ %{}) do
     %Practitioner{}
     |> Practitioner.changeset(attrs)
+    |> maybe_put_clinics(attrs)
     |> Repo.insert()
   end
 
@@ -103,6 +105,15 @@ defmodule OnlineDr.Account do
     Practitioner.changeset(practitioner, attrs)
   end
 
+  defp maybe_put_clinics(changeset, attrs) do
+    clinics = OnlineDr.Center.get_clinics(attrs["clinics"])
+    Ecto.Changeset.put_assoc(changeset, :clinics, clinics)
+  end
+
+
+  def load_clinics(practitioner) do
+    Repo.preload(practitioner, :clinics)
+  end
 
   ## account kind section
 

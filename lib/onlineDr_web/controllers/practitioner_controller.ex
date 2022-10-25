@@ -12,7 +12,9 @@ defmodule OnlineDrWeb.PractitionerController do
 
   def new(conn, _params) do
     changeset = Account.change_practitioner(%Practitioner{})
-    render(conn, "new.html", changeset: changeset)
+    data = Account.load_clinics(changeset.data)
+    clinics = OnlineDr.Center.list_clinics()
+    render(conn, "new.html", changeset: %{changeset | data: data}, clinics: clinics)
   end
 
   def create(conn, %{"practitioner" => practitioner_params}) do
@@ -64,4 +66,6 @@ defmodule OnlineDrWeb.PractitionerController do
   defp load_kinds(conn, _) do
     assign(conn, :kinds, Account.list_alphabetical_kinds())
   end
+
+
 end
