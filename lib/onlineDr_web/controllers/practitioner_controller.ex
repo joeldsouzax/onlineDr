@@ -25,7 +25,9 @@ defmodule OnlineDrWeb.PractitionerController do
         |> redirect(to: Routes.practitioner_path(conn, :show, practitioner))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        data = Account.load_clinics(changeset.data)
+        clinics = OnlineDr.Center.list_clinics()
+        render(conn, "new.html", changeset: %{changeset | data: data}, clinics: clinics)
     end
   end
 
@@ -37,7 +39,9 @@ defmodule OnlineDrWeb.PractitionerController do
   def edit(conn, %{"id" => id}) do
     practitioner = Account.get_practitioner!(id)
     changeset = Account.change_practitioner(practitioner)
-    render(conn, "edit.html", practitioner: practitioner, changeset: changeset)
+    data = Account.load_clinics(changeset.data)
+    clinics = OnlineDr.Center.list_clinics()
+    render(conn, "edit.html", practitioner: practitioner, changeset: %{changeset | data: data}, clinics: clinics)
   end
 
   def update(conn, %{"id" => id, "practitioner" => practitioner_params}) do
@@ -50,7 +54,9 @@ defmodule OnlineDrWeb.PractitionerController do
         |> redirect(to: Routes.practitioner_path(conn, :show, practitioner))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", practitioner: practitioner, changeset: changeset)
+        data = Account.load_clinics(changeset.data)
+        clinics = OnlineDr.Center.list_clinics()
+        render(conn, "edit.html", practitioner: practitioner, changeset: %{changeset | data: data}, clinics: clinics)
     end
   end
 
