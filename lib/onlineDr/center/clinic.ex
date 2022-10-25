@@ -7,6 +7,7 @@ defmodule OnlineDr.Center.Clinic do
     field :name, :string
     field :phone_number, :string
     belongs_to :type, OnlineDr.Center.Type
+    many_to_many :practioners, OnlineDr.Account.Practitioner, join_through: "clinics-practitioners"
     timestamps()
   end
 
