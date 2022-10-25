@@ -105,6 +105,8 @@ defmodule OnlineDr.Account do
     Practitioner.changeset(practitioner, attrs)
   end
 
+  defp maybe_put_clinics(changeset, []), do: changeset
+
   defp maybe_put_clinics(changeset, attrs) do
     clinics = OnlineDr.Center.get_clinics(attrs["clinics"])
     Ecto.Changeset.put_assoc(changeset, :clinics, clinics)
